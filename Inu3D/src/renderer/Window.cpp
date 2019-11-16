@@ -52,8 +52,8 @@ Window::~Window()
 
 void Window::clear(float x, float y, float z)
 {
-	glClearColor(x, y, z, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	GLCall(glClearColor(x, y, z, 1.0f));
+	GLCall(glClear(GL_COLOR_BUFFER_BIT));
 }
 
 void Window::update()
@@ -64,7 +64,7 @@ void Window::update()
 
 auto Window::viewport_did_resize(int width, int height) -> void
 {
-	glViewport(0, 0, (GLsizei)width, (GLsizei)height);
+	GLCall(glViewport(0, 0, (GLsizei)width, (GLsizei)height));
 }
 
 auto Window::process_input(GLFWwindow *window) -> void

@@ -70,11 +70,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\mikel\Dropbox\OpenGL\Libraries\Includes;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\mikel\Dropbox\OpenGL\Libraries\Includes;$(IncludePath);</IncludePath>
     <LibraryPath>C:\Users\mikel\Dropbox\OpenGL\Libraries\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\mikel\Dropbox\OpenGL\Libraries\Includes;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\mikel\Dropbox\OpenGL\Libraries\Includes;$(IncludePath);</IncludePath>
     <LibraryPath>C:\Users\mikel\Dropbox\OpenGL\Libraries\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -83,6 +83,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inu3D\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;user32.lib;gdi32.lib;shell32.lib;</AdditionalDependencies>
@@ -104,6 +105,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inu3D\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -127,11 +129,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Users\mikel\Dropbox\OpenGL\Libraries\Includes\glad\glad.c" />
+    <ClCompile Include="src\utils\error\Error.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common.h" />
+    <ClInclude Include="src\Common.h" />
+    <ClInclude Include="src\utils\error\Error.h" />
     <ClInclude Include="src\renderer\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

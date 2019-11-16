@@ -24,12 +24,18 @@
     <ClCompile Include="..\..\..\..\Users\mikel\Dropbox\OpenGL\Libraries\Includes\glad\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\error\Error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\renderer\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common.h">
+    <ClInclude Include="src\utils\error\Error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
