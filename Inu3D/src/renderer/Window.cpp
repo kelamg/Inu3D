@@ -39,6 +39,8 @@ void Window::init()
 
 	if (with_vsync())
 		glfwSwapInterval(1);
+	else
+		glfwSwapInterval(0);
 }
 
 Window::~Window()

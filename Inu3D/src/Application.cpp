@@ -11,18 +11,18 @@ int main(void)
 	Renderer renderer;
 
 	vector<float> vertices = {
-		// left bottom triangle
-		-0.5f,  0.5f, 0.0f,
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-
-		 // right top triangle
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
+		-0.5f,  0.5f, 0, // v0
+		-0.5f, -0.5f, 0, // v1
+		 0.5f, -0.5f, 0, // v2
+		 0.5f,  0.5f, 0, // v3
 	};
 
-	RawModel *model = loader.load_to_vao(vertices);
+	vector<unsigned int> indices = {
+		0, 1, 3, 
+		3, 1, 2
+	};
+
+	RawModel *model = loader.load_to_vao(vertices, indices);
 
 	while (!window.is_running())
 	{

@@ -13,7 +13,7 @@ void Renderer::render(RawModel *model)
 {
 	GLCall(glBindVertexArray(model->get_vao_id()));
 	GLCall(glEnableVertexAttribArray(0));
-	GLCall(glDrawArrays(GL_TRIANGLES, 0, model->get_vertex_count()));
+	GLCall(glDrawElements(GL_TRIANGLES, model->get_vertex_count(), GL_UNSIGNED_INT, 0));
 	GLCall(glEnableVertexAttribArray(0));
 	GLCall(glBindVertexArray(0));
 }

@@ -13,13 +13,15 @@ private:
 	unsigned int create_vbo(GLenum target);
 	void unbind_vao();
 	void store_data_into_attr_list(int index, vector<float> &data);
+	void bind_indices_buffer(vector<unsigned int> &indices);
 
 public:
 	Loader();
 	~Loader();
 
 	RawModel* load_to_vao(
-		vector<float> &positions
+		vector<float> &positions,
+		vector<unsigned int> &indices
 	);
 
 };
