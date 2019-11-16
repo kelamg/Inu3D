@@ -129,11 +129,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Users\mikel\Dropbox\OpenGL\Libraries\Includes\glad\glad.c" />
+    <ClCompile Include="src\renderer\Renderer.cpp" />
+    <ClCompile Include="src\models\RawModel.cpp" />
+    <ClCompile Include="src\renderer\Loader.cpp" />
     <ClCompile Include="src\utils\error\Error.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\renderer\Renderer.h" />
+    <ClInclude Include="src\models\RawModel.h" />
+    <ClInclude Include="src\renderer\Loader.h" />
     <ClInclude Include="src\Common.h" />
     <ClInclude Include="src\utils\error\Error.h" />
     <ClInclude Include="src\renderer\Window.h" />

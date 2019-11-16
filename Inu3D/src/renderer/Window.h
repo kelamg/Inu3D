@@ -2,9 +2,6 @@
 
 #include "Common.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 struct WindowProps
 {
 	unsigned int width;
