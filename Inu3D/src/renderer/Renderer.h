@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Common.h"
-#include "models/RawModel.h"
+#include "models/TexturedModel.h"
 
 class Renderer
 {
@@ -9,6 +9,6 @@ public:
 	Renderer();
 	~Renderer();
 
-	void render(RawModel *model);
+	void render(TexturedModel *textured_model);
 };
 

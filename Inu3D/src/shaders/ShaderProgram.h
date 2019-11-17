@@ -49,7 +49,7 @@ public:
 	void set_vec3(int location, const glm::vec3 &value) const;
 	void set_vec3(int location, float x, float y, float z) const;
 	void set_vec4(int location, const glm::vec4 &value) const;
-	void set_vec4(int location, float x, float y, float z, float w);
+	void set_vec4(int location, float x, float y, float z, float w) const;
 	void set_mat2(int location, const glm::mat2 &mat) const;
 	void set_mat3(int location, const glm::mat3 &mat) const;
 	void set_mat4(int location, const glm::mat4 &mat) const;

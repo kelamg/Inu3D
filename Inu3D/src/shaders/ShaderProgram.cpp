@@ -182,7 +182,7 @@ void ShaderProgram::set_vec4(int location, const glm::vec4 &value) const
 	GLCall(glUniform4fv(location, 1, &value[0]));
 }
 
-void ShaderProgram::set_vec4(int location, float x, float y, float z, float w)
+void ShaderProgram::set_vec4(int location, float x, float y, float z, float w) const
 {
 	GLCall(glUniform4f(location, x, y, z, w));
 }
