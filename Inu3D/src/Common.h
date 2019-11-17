@@ -10,6 +10,7 @@
 #include <vector>
 
 using std::cout;
+using std::cerr;
 using std::endl;
 using std::string;
 using std::runtime_error;

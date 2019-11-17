@@ -1,6 +1,7 @@
 #include "renderer/Window.h"
 #include "renderer/Loader.h"
 #include "renderer/Renderer.h"
+#include "shaders/StaticShader.h"
 
 int main(void)
 {
@@ -9,6 +10,7 @@ int main(void)
 
 	Loader loader;
 	Renderer renderer;
+	StaticShader shader;
 
 	vector<float> vertices = {
 		-0.5f,  0.5f, 0, // v0
@@ -27,7 +29,9 @@ int main(void)
 	while (!window.is_running())
 	{
 		window.clear(0.1f, 0.2f, 0.3f);
+		shader.start();
 		renderer.render(model);
+		shader.stop();
 		window.update();
 	}
 
