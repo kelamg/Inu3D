@@ -60,8 +60,9 @@ Window::~Window()
 
 void Window::clear(float x, float y, float z)
 {
+	GLCall(glEnable(GL_DEPTH_TEST));
 	GLCall(glClearColor(x, y, z, 1.0f));
-	GLCall(glClear(GL_COLOR_BUFFER_BIT));
+	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
 void Window::update()
