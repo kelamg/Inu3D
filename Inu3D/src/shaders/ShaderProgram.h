@@ -34,6 +34,7 @@ public:
 	int get_uniform_location(const string &uniform_name);
 
 	static string get_error_string(ShaderTypes type);
+	virtual void get_all_uniform_locations() = 0;
 
 	inline int get_program_id() const { return m_program_id; }
 	inline int get_vertex_shader_id() const { return m_vertex_shader_id; }

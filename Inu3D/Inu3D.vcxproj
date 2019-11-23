@@ -131,6 +131,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Users\mikel\Dropbox\OpenGL\Libraries\Includes\glad\glad.c" />
+    <ClCompile Include="src\entities\Camera.cpp" />
+    <ClCompile Include="src\entities\Entity.cpp" />
+    <ClCompile Include="src\utils\maths\Maths.cpp" />
     <ClCompile Include="src\shaders\ShaderProgram.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\models\RawModel.cpp" />
@@ -144,6 +147,9 @@
     <ClCompile Include="src\models\TexturedModel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\Camera.h" />
+    <ClInclude Include="src\entities\Entity.h" />
+    <ClInclude Include="src\utils\maths\Maths.h" />
     <ClInclude Include="src\shaders\ShaderProgram.h" />
     <ClInclude Include="src\renderer\Renderer.h" />
     <ClInclude Include="src\models\RawModel.h" />

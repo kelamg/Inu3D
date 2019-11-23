@@ -15,7 +15,6 @@ ShaderProgram::ShaderProgram(const string &vertex_file, const string &fragment_f
 
 ShaderProgram::~ShaderProgram()
 {
-	clean_up();
 }
 
 void ShaderProgram::link_program()

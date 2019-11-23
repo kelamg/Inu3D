@@ -2,15 +2,19 @@
 
 const char *APP_NAME = "Inu3D";
 
-Window::Window(const WindowProps& props)
-	: m_props(props)
+Window window;
+
+Window::Window()
 {
-	init();
+	m_camera = new Camera();
 }
 
-void Window::init()
+void Window::init(WindowProps &props)
 {
-	glfwInit();
+	m_props.width = props.width;
+	m_props.height = props.height;
+	m_props.vsync = props.vsync;
+
 	if (!glfwInit())
 		throw runtime_error("Failed to initialize GLFW");
 
@@ -18,7 +22,7 @@ void Window::init()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	m_window = glfwCreateWindow(get_width(), get_height(), APP_NAME, nullptr, nullptr);
+	m_window = glfwCreateWindow(props.width, props.height, APP_NAME, nullptr, nullptr);
 	if (!m_window)
 	{
 		glfwTerminate();
@@ -45,6 +49,8 @@ void Window::init()
 
 Window::~Window()
 {
+	delete m_camera;
+
 	if (m_window)
 	{
 		glfwDestroyWindow(m_window);
@@ -69,8 +75,16 @@ auto Window::viewport_did_resize(int width, int height) -> void
 	GLCall(glViewport(0, 0, (GLsizei)width, (GLsizei)height));
 }
 
-auto Window::process_input(GLFWwindow *window) -> void
+auto Window::process_input(GLFWwindow *window, int key, int action) -> void
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
+
+	//	Handle key input here for now
+	if (action == GLFW_REPEAT)
+	{
+		cout << key << " pressed" << endl;
+		m_camera->move(key);
+
+	}
 }
