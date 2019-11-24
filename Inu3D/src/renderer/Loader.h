@@ -25,7 +25,7 @@ public:
 		vector<float> &texture_coords,
 		vector<unsigned int> &indices
 	);
-	Texture* load_texture(string filepath);
+	Texture* load_texture(string file);
 
 };
 

@@ -29,9 +29,9 @@ RawModel* Loader::load_to_vao(
 	return new RawModel(vao_id, indices.size());
 }
 
- Texture* Loader::load_texture(string filepath)
+ Texture* Loader::load_texture(string file)
 {
-	Texture *texture = new Texture(filepath);
+	Texture *texture = new Texture(RES_LOC + TEX_LOC + file);
 	texture->bind();
 	m_textures->push_back(texture->get_texture_id());
 	return texture;

@@ -1,7 +1,7 @@
 #include "StaticShader.h"
 
-const string VERTEX_FILE   = "res/shaders/vertexshader.glsl";
-const string FRAGMENT_FILE = "res/shaders/fragmentshader.glsl";
+const string VERTEX_FILE   = RES_LOC + SHA_LOC + "vertexshader.glsl";
+const string FRAGMENT_FILE = RES_LOC + SHA_LOC + "fragmentshader.glsl";
 
 StaticShader::StaticShader() : ShaderProgram(VERTEX_FILE, FRAGMENT_FILE)
 {

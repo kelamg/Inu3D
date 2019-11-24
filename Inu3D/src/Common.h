@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include "utils/error/Error.h"
+#include "utils/Constants.h"
 
 #include <iostream>
 #include <string>
