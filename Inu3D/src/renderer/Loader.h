@@ -23,6 +23,7 @@ public:
 	RawModel* load_to_vao(
 		vector<float> &positions,
 		vector<float> &texture_coords,
+		vector<float> &normals,
 		vector<unsigned int> &indices
 	);
 	Texture* load_texture(string file);

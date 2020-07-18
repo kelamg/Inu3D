@@ -66,7 +66,7 @@ void ShaderProgram::bind_attribute(int attr, const string &var_name)
 
 int ShaderProgram::get_uniform_location(const string &uniform_name)
 {
-	std::unordered_map < string, int> cache = get_cache();
+	std::unordered_map <string, int> cache = get_cache();
 	if (cache.find(uniform_name) != cache.end())
 		return cache[uniform_name];
 

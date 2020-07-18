@@ -15,16 +15,20 @@ Camera::~Camera()
 
 void Camera::move(int key)
 {
+	float camera_speed = 0.2f;
 	switch (key)
 	{
 	case GLFW_KEY_W:
-		m_position.z -= 0.02f;
-		break;
-	case GLFW_KEY_D:
-		m_position.x += 0.02f;
+		m_position.z -= camera_speed;
 		break;
 	case GLFW_KEY_A:
-		m_position.x -= 0.02f;
+		m_position.x -= camera_speed;
+		break;
+	case GLFW_KEY_S:
+		m_position.z += camera_speed;
+		break;
+	case GLFW_KEY_D:
+		m_position.x += camera_speed;
 		break;
 	}
 }

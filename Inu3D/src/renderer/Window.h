@@ -40,7 +40,7 @@ public:
 	auto viewport_did_resize(int width, int height) -> void;
 	auto process_input(GLFWwindow *window, int key, int action) -> void;
 
-	inline bool is_running() const { return glfwWindowShouldClose(m_window); }
+	inline bool is_running() const { return !glfwWindowShouldClose(m_window); }
 	inline unsigned int get_width() const { return m_props.width; }
 	inline unsigned int get_height() const { return m_props.height; }
 	inline unsigned int with_vsync() const { return m_props.vsync; }

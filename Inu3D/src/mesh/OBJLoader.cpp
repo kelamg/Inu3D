@@ -122,10 +122,13 @@ RawModel* OBJLoader::load_obj_model(string &filename, Loader *loader)
 		delete vertices[i];
 	}
 
-	return loader->load_to_vao(vertices_arr, textures_arr, indices_arr);
+	return loader->load_to_vao(vertices_arr, textures_arr, normals_arr, indices_arr);
 }
 
-void OBJLoader::process_vertex(int index, int texture_index, int normal_index, vector<Vertex *> &vertices, vector<unsigned int> &indices)
+void OBJLoader::process_vertex(
+	int index, int texture_index, int normal_index, 
+	vector<Vertex *> &vertices, vector<unsigned int> &indices
+)
 {
 	Vertex *current_vertex = vertices[index];
 	if (!current_vertex->is_set())
@@ -161,7 +164,9 @@ void OBJLoader::convert_data_to_arrs(
 		vertices_arr.push_back(position[1]);
 		vertices_arr.push_back(position[2]);
 		textures_arr.push_back(texture_coord[0]);
-		textures_arr.push_back(1.0f - texture_coord[1]);
+		
+		//	1 minus because OpenGL tex_coords start from top left, blender starts from bottom left
+		textures_arr.push_back(1.0f - texture_coord[1]); 
 		normals_arr.push_back(normal_vector[0]);
 		normals_arr.push_back(normal_vector[1]);
 		normals_arr.push_back(normal_vector[2]);
@@ -182,7 +187,13 @@ void OBJLoader::remove_unused_vertices(vector<Vertex *> &vertices)
 	}
 }
 
-void OBJLoader::reprocess_vertex(Vertex *previous_vertex, int new_texture_index, int new_normal_index, vector<unsigned int> &indices, vector<Vertex *> &vertices)
+void OBJLoader::reprocess_vertex(
+	Vertex *previous_vertex, 
+	int new_texture_index, 
+	int new_normal_index, 
+	vector<unsigned int> &indices, 
+	vector<Vertex *> &vertices
+)
 {
 	//	account for texture seams using duplicate vertices
 	if (previous_vertex->has_same_texture_and_normal(new_texture_index, new_normal_index))

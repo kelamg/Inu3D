@@ -18,6 +18,7 @@ Loader::~Loader()
 RawModel* Loader::load_to_vao(
 	vector<float> &positions,
 	vector<float> &texture_coords,
+	vector<float> &normals,
 	vector<unsigned int> &indices
 )
 {
@@ -25,6 +26,7 @@ RawModel* Loader::load_to_vao(
 	bind_indices_buffer(indices);
 	store_data_into_attr_list(0, 3, positions);
 	store_data_into_attr_list(1, 2, texture_coords);
+	store_data_into_attr_list(2, 3, normals);
 	unbind_vao();
 	return new RawModel(vao_id, indices.size());
 }

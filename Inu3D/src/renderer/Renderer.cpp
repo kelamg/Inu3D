@@ -23,6 +23,7 @@ void Renderer::render(Entity *entity, StaticShader shader)
 	GLCall(glBindVertexArray(raw_model->get_vao_id()));
 	GLCall(glEnableVertexAttribArray(0));
 	GLCall(glEnableVertexAttribArray(1));
+	GLCall(glEnableVertexAttribArray(2));
 
 	glm::mat4 transformation_matrix = Maths::create_transformation_matrix(
 		entity->get_position(), entity->get_rotx(), entity->get_roty(), entity->get_rotz(), entity->get_scale()
@@ -33,6 +34,7 @@ void Renderer::render(Entity *entity, StaticShader shader)
 	GLCall(glDrawElements(GL_TRIANGLES, raw_model->get_vertex_count(), GL_UNSIGNED_INT, 0));
 	GLCall(glDisableVertexAttribArray(0));
 	GLCall(glDisableVertexAttribArray(1));
+	GLCall(glDisableVertexAttribArray(2));
 	GLCall(glBindVertexArray(0));
 }
 
