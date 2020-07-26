@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Users\mikel\Dropbox\OpenGL\Libraries\Includes\glad\glad.c" />
+    <ClCompile Include="src\textures\ModelTexture.cpp" />
     <ClCompile Include="src\entities\Light.cpp" />
     <ClCompile Include="src\utils\Constants.cpp" />
     <ClCompile Include="src\mesh\OBJLoader.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="src\mesh\Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\textures\ModelTexture.h" />
     <ClInclude Include="src\entities\Light.h" />
     <ClInclude Include="src\utils\Constants.h" />
     <ClInclude Include="src\mesh\OBJLoader.h" />

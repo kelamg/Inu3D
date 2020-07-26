@@ -30,7 +30,10 @@ void Renderer::render(Entity *entity, StaticShader shader)
 	);
 	shader.load_transformation_matrix(transformation_matrix);
 
-	model->get_texture()->bind();
+	ModelTexture *texture = model->get_texture();
+	shader.load_shine_vars(texture->get_shine_damper(), texture->get_reflectivity());
+
+	GLCall(glBindTexture(GL_TEXTURE_2D, model->get_texture()->get_texture_id()));
 	GLCall(glDrawElements(GL_TRIANGLES, raw_model->get_vertex_count(), GL_UNSIGNED_INT, 0));
 	GLCall(glDisableVertexAttribArray(0));
 	GLCall(glDisableVertexAttribArray(1));

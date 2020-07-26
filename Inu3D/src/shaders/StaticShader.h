@@ -7,11 +7,14 @@
 class StaticShader : public ShaderProgram
 {
 private:
+	//	locations
 	int m_transformation_matrix_location;
 	int m_projection_matrix_location;
 	int m_view_matrix_location;
 	int m_light_position;
 	int m_light_colour;
+	int m_shine_damper;
+	int m_reflectivity;
 
 public:
 	StaticShader();
@@ -23,6 +26,7 @@ public:
 	void load_projection_matrix(const glm::mat4 &matrix);
 	void load_view_matrix(Camera *camera);
 	void load_light(Light *light);
+	void load_shine_vars(float damper, float reflectivity);
 
 };
 

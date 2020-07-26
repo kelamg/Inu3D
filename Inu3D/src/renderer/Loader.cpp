@@ -31,12 +31,51 @@ RawModel* Loader::load_to_vao(
 	return new RawModel(vao_id, indices.size());
 }
 
- Texture* Loader::load_texture(string file)
+unsigned int Loader::load_texture(string file)
 {
-	Texture *texture = new Texture(RES_LOC + TEX_LOC + file);
-	texture->bind();
-	m_textures->push_back(texture->get_texture_id());
-	return texture;
+	unsigned int texture_id;
+	int texture_width, texture_height, texture_bpp;
+	unsigned char *buffer;
+	
+	file = RES_LOC + TEX_LOC + file;
+
+	stbi_set_flip_vertically_on_load(0);
+	buffer = stbi_load(file.c_str(), &texture_width, &texture_height, &texture_bpp, 4);
+
+	GLCall(glGenTextures(1, &texture_id));
+	GLCall(glBindTexture(GL_TEXTURE_2D, texture_id));
+
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+
+	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, texture_width, texture_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer));
+	GLCall(glBindTexture(GL_TEXTURE_2D, 0));
+
+	m_textures->push_back(texture_id);
+
+	if (buffer)
+		stbi_image_free(buffer);
+
+	return texture_id;
+}
+
+void Loader::clean_up()
+{
+	vector<unsigned int>::iterator it;
+
+	for (it = m_vaos->begin(); it != m_vaos->end(); it++)
+		glDeleteVertexArrays(1, &*it);
+	m_vaos->clear();
+
+	for (it = m_vbos->begin(); it != m_vbos->end(); it++)
+		glDeleteBuffers(1, &*it);
+	m_vbos->clear();
+
+	for (it = m_textures->begin(); it != m_textures->end(); it++)
+		glDeleteTextures(1, &*it);
+	m_textures->clear();
 }
 
 unsigned int Loader::create_vao()

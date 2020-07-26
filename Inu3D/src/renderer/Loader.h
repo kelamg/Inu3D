@@ -1,5 +1,7 @@
 #pragma once
 
+#include "vendor/stb_image/stb_image.h"
+
 #include "Common.h"
 #include "models/TexturedModel.h"
 
@@ -14,7 +16,7 @@ private:
 	unsigned int create_vbo(GLenum target);
 	void unbind_vao();
 	void store_data_into_attr_list(int index, int tex_coord_size, vector<float> &data);
-	void bind_indices_buffer(vector<unsigned int> &indices);
+	void bind_indices_buffer(vector<unsigned int>& indices);
 
 public:
 	Loader();
@@ -26,7 +28,8 @@ public:
 		vector<float> &normals,
 		vector<unsigned int> &indices
 	);
-	Texture* load_texture(string file);
+	unsigned int load_texture(string file);
+	void clean_up();
 
 };
 

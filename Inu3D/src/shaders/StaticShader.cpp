@@ -30,6 +30,8 @@ void StaticShader::get_all_uniform_locations()
 	m_view_matrix_location = get_uniform_location("view_matrix");
 	m_light_position = get_uniform_location("light_position");
 	m_light_colour = get_uniform_location("light_colour");
+	m_shine_damper = get_uniform_location("shine_damper");
+	m_reflectivity = get_uniform_location("reflectivity");
 }
 
 void StaticShader::load_transformation_matrix(const glm::mat4 &matrix)
@@ -52,4 +54,10 @@ void StaticShader::load_light(Light *light)
 {
 	set_vec3(m_light_position, light->get_position());
 	set_vec3(m_light_colour, light->get_colour());
+}
+
+void StaticShader::load_shine_vars(float damper, float reflectivity)
+{
+	set_float(m_shine_damper, damper);
+	set_float(m_reflectivity, reflectivity);
 }
