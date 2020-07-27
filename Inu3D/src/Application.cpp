@@ -1,6 +1,6 @@
 #include "renderer/Window.h"
 #include "renderer/Loader.h"
-#include "renderer/Renderer.h"
+#include "renderer/MasterRenderer.h"
 #include "shaders/StaticShader.h"
 #include "entities/Entity.h"
 #include "mesh/OBJLoader.h"
@@ -11,14 +11,12 @@ int main(void)
 	window.init(window_props); // window global
 
 	Loader loader;
-	StaticShader shader;
-	Renderer renderer(&shader);
+	MasterRenderer renderer;
 
-	string model_file = "dragon/dragon.obj";
-	//string model_file = "stall/stall.obj";
-	RawModel *model = OBJLoader::load_obj_model(model_file, &loader);
+	string dragon = "dragon/dragon.obj";
+	string stall = "stall/stall.obj";
+	RawModel *model = OBJLoader::load_obj_model(dragon, &loader);
 	//Texture *stall_texture = loader.load_texture("stall_tex.png");
-	//TexturedModel *textured_model = new TexturedModel(model, stall_texture);
 	TexturedModel *textured_model = new TexturedModel(model, new ModelTexture(loader.load_texture("snow-layer.png")));
 	ModelTexture *texture = textured_model->get_texture();
 	texture->set_shine_damper(10);
@@ -31,16 +29,13 @@ int main(void)
 	{
 		entity->increase_rotation(0, 1, 0);
 		window.clear(0.1f, 0.2f, 0.3f);
-		shader.start();
-		shader.load_light(light);
-		shader.load_view_matrix(window.get_camera());
-		renderer.render(entity, shader);
-		shader.stop();
+		renderer.process_entity(entity);
+		renderer.render(light, window.get_camera());
 		window.update();
 	}
 
 	loader.clean_up();
-	shader.clean_up();
+	renderer.clean_up();
 
 	return 0;
 }

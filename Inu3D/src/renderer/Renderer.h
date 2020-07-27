@@ -9,6 +9,7 @@ class Renderer
 {
 private:
 	glm::mat4 m_projection_matrix;
+	StaticShader *m_shader;
 
 	static constexpr float FOV = 70;
 	static constexpr float NEAR_PLANE = 0.1f;
@@ -22,6 +23,9 @@ public:
 	Renderer(StaticShader *shader);
 	~Renderer();
 
-	void render(Entity *entity, StaticShader shader);
+	void render(std::map<TexturedModel*, vector<Entity*>*>* entities);
+	void prepare_textured_model(TexturedModel *model);
+	void unbind_textured_model();
+	void prepare_instance(Entity *entity);
 };
 

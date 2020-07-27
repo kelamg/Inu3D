@@ -18,7 +18,7 @@ void main()
 	vec3 unit_light_vector = normalize(to_light_vector);
 
 	float dot_prod = dot(unit_normal, unit_light_vector);
-	float brightness = max(dot_prod, 0.0); // negative values are irrelevant
+	float brightness = max(dot_prod, 0.2); // ambient lighting
 	vec3 diffuse = brightness * light_colour;
 
 	vec3 unit_vector_to_camera = normalize(to_camera_vector);
