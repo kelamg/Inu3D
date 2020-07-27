@@ -15,9 +15,10 @@ int main(void)
 
 	string dragon = "dragon/dragon.obj";
 	string stall = "stall/stall.obj";
+	string dragon_texture = "snow-layer.png";
+	string stall_texture = "stall_tex.png";
 	RawModel *model = OBJLoader::load_obj_model(dragon, &loader);
-	//Texture *stall_texture = loader.load_texture("stall_tex.png");
-	TexturedModel *textured_model = new TexturedModel(model, new ModelTexture(loader.load_texture("snow-layer.png")));
+	TexturedModel *textured_model = new TexturedModel(model, new ModelTexture(loader.load_texture(dragon_texture)));
 	ModelTexture *texture = textured_model->get_texture();
 	texture->set_shine_damper(10);
 	texture->set_reflectivity(1);
@@ -25,8 +26,22 @@ int main(void)
 	Entity *entity = new Entity(textured_model, glm::vec3(0, -10, -30), 0.0, 0.0, 0.0, 1.0);
 	Light* light = new Light(glm::vec3(0, 0, -20), glm::vec3(1, 1, 1));
 
+	//	performance
+	double previous_time = glfwGetTime();
+	int nb_frames = 0;
+
 	while (window.is_running())
 	{
+		double current_time = glfwGetTime();
+		nb_frames++;
+		if (current_time - previous_time >= 1.0) // if previous print was more than a second ago
+		{
+			//	16.666ms is 60fps, 33.333 is 30fps
+			cout << 1000.0 / double(nb_frames) << " ms/frame" << endl;
+			nb_frames = 0;
+			previous_time += 1.0;
+		}
+
 		entity->increase_rotation(0, 1, 0);
 		window.clear(0.1f, 0.2f, 0.3f);
 		renderer.process_entity(entity);
