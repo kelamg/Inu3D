@@ -2,8 +2,10 @@
 
 #include "Common.h"
 #include "renderer/Loader.h"
-#include "renderer/Renderer.h"
+#include "renderer/EntityRenderer.h"
+#include "renderer/TerrainRenderer.h"
 #include "shaders/StaticShader.h"
+#include "shaders/TerrainShader.h"
 #include "models/TexturedModel.h"
 #include "entities/Entity.h"
 #include "entities/Light.h"
@@ -12,9 +14,22 @@
 class MasterRenderer
 {
 private:
-	StaticShader* m_shader;
-	Renderer *m_renderer;
+	static constexpr float FOV = 70;
+	static constexpr float NEAR_PLANE = 0.1f;
+	static constexpr float FAR_PLANE = 1000;
+
+	glm::mat4 m_projection_matrix;
+	StaticShader *m_shader;
+	TerrainShader *m_terrain_shader;
+	EntityRenderer *m_renderer;
+	TerrainRenderer *m_terrain_renderer;
 	std::map<TexturedModel*, vector<Entity*>*>* m_entities_map;
+	vector<Terrain*>* m_terrains;
+
+	void create_projection_matrix();
+
+	inline glm::mat4 get_projection_matrix() const { return m_projection_matrix; }
+
 
 public:
 	MasterRenderer();
@@ -23,5 +38,6 @@ public:
 	void clean_up();
 	void render(Light *light, Camera *camera);
 	void process_entity(Entity *entity);
+	void process_terrain(Terrain *terrain);
 };
 

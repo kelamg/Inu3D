@@ -3,6 +3,7 @@
 #include "renderer/MasterRenderer.h"
 #include "shaders/StaticShader.h"
 #include "entities/Entity.h"
+#include "terrains/Terrain.h"
 #include "mesh/OBJLoader.h"
 
 int main(void)
@@ -23,8 +24,11 @@ int main(void)
 	texture->set_shine_damper(10);
 	texture->set_reflectivity(1);
 
-	Entity *entity = new Entity(textured_model, glm::vec3(0, -10, -30), 0.0, 0.0, 0.0, 1.0);
-	Light* light = new Light(glm::vec3(0, 0, -20), glm::vec3(1, 1, 1));
+	Entity *entity = new Entity(textured_model, glm::vec3(0, 0, -30), 0.0, 0.0, 0.0, 1.0);
+	Light* light = new Light(glm::vec3(3000, 2000, 2000), glm::vec3(1, 1, 1));
+
+	Terrain *terrain = new Terrain(0, -1, &loader, new ModelTexture(loader.load_texture("grass.png")));
+	Terrain *terrain2 = new Terrain(-1, -1, &loader, new ModelTexture(loader.load_texture("grass.png")));
 
 	//	performance
 	double previous_time = glfwGetTime();
@@ -44,13 +48,15 @@ int main(void)
 
 		entity->increase_rotation(0, 1, 0);
 		window.clear(0.1f, 0.2f, 0.3f);
+		renderer.process_terrain(terrain);
+		renderer.process_terrain(terrain2);
 		renderer.process_entity(entity);
 		renderer.render(light, window.get_camera());
 		window.update();
 	}
 
-	loader.clean_up();
 	renderer.clean_up();
+	loader.clean_up();
 
 	return 0;
 }

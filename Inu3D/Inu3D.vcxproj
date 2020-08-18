@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -140,7 +140,7 @@
     <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\utils\maths\Maths.cpp" />
     <ClCompile Include="src\shaders\ShaderProgram.cpp" />
-    <ClCompile Include="src\renderer\Renderer.cpp" />
+    <ClCompile Include="src\renderer\EntityRenderer.cpp" />
     <ClCompile Include="src\models\RawModel.cpp" />
     <ClCompile Include="src\renderer\Loader.cpp" />
     <ClCompile Include="src\utils\error\Error.cpp" />
@@ -151,9 +151,13 @@
     <ClCompile Include="src\textures\Texture.cpp" />
     <ClCompile Include="src\models\TexturedModel.cpp" />
     <ClCompile Include="src\mesh\Vertex.cpp" />
+    <ClCompile Include="src\terrains\Terrain.cpp" />
+    <ClCompile Include="src\shaders\TerrainShader.cpp" />
+    <ClCompile Include="src\renderer\TerrainRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\renderer\MasterRenderer.h" />
+    <ClInclude Include="src\renderer\TerrainRenderer.h" />
     <ClInclude Include="src\textures\ModelTexture.h" />
     <ClInclude Include="src\entities\Light.h" />
     <ClInclude Include="src\utils\Constants.h" />
@@ -162,7 +166,7 @@
     <ClInclude Include="src\entities\Entity.h" />
     <ClInclude Include="src\utils\maths\Maths.h" />
     <ClInclude Include="src\shaders\ShaderProgram.h" />
-    <ClInclude Include="src\renderer\Renderer.h" />
+    <ClInclude Include="src\renderer\EntityRenderer.h" />
     <ClInclude Include="src\models\RawModel.h" />
     <ClInclude Include="src\renderer\Loader.h" />
     <ClInclude Include="src\Common.h" />
@@ -173,9 +177,13 @@
     <ClInclude Include="src\textures\Texture.h" />
     <ClInclude Include="src\models\TexturedModel.h" />
     <ClInclude Include="src\mesh\Vertex.h" />
+    <ClInclude Include="src\terrains\Terrain.h" />
+    <ClInclude Include="src\shaders\TerrainShader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\fragmentshader.glsl" />
+    <None Include="res\shaders\terrainfragmentshader .glsl" />
+    <None Include="res\shaders\terrainvertexshader.glsl" />
     <None Include="res\shaders\vertexshader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

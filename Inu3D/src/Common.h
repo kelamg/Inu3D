@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <iterator>
 
 using std::cout;
 using std::cerr;
