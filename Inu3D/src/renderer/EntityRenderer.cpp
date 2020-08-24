@@ -1,4 +1,5 @@
 #include "EntityRenderer.h"
+#include "MasterRenderer.h"
 
 #include <math.h>
 
@@ -50,12 +51,18 @@ void EntityRenderer::prepare_textured_model(TexturedModel* model)
 	GLCall(glEnableVertexAttribArray(2));
 
 	ModelTexture *texture = model->get_texture();
+	if (texture->get_has_transparency())
+	{
+		MasterRenderer::disable_culling();
+	}
 	m_shader->load_shine_vars(texture->get_shine_damper(), texture->get_reflectivity());
+	m_shader->load_fake_lighting_var(texture->get_use_fake_lighting());
 	GLCall(glBindTexture(GL_TEXTURE_2D, model->get_texture()->get_texture_id()));
 }
 
 void EntityRenderer::unbind_textured_model()
 {
+	MasterRenderer::enable_culling();
 	GLCall(glDisableVertexAttribArray(0));
 	GLCall(glDisableVertexAttribArray(1));
 	GLCall(glDisableVertexAttribArray(2));

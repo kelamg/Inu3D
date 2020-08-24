@@ -32,6 +32,7 @@ void StaticShader::get_all_uniform_locations()
 	m_light_colour = get_uniform_location("light_colour");
 	m_shine_damper = get_uniform_location("shine_damper");
 	m_reflectivity = get_uniform_location("reflectivity");
+	m_use_fake_lighting = get_uniform_location("use_fake_lighting");
 }
 
 void StaticShader::load_transformation_matrix(const glm::mat4 &matrix)
@@ -60,4 +61,9 @@ void StaticShader::load_shine_vars(float damper, float reflectivity)
 {
 	set_float(m_shine_damper, damper);
 	set_float(m_reflectivity, reflectivity);
+}
+
+void StaticShader::load_fake_lighting_var(bool use_fake_lighting)
+{
+	set_bool(m_use_fake_lighting, use_fake_lighting);
 }

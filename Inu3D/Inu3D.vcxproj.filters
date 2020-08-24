@@ -87,6 +87,9 @@
     <ClCompile Include="src\renderer\TerrainRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\random\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\renderer\Window.h">
@@ -158,11 +161,15 @@
     <ClInclude Include="src\renderer\TerrainRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\utils\random\Random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\fragmentshader.glsl" />
     <None Include="res\shaders\vertexshader.glsl" />
     <None Include="res\shaders\terrainfragmentshader .glsl" />
     <None Include="res\shaders\terrainvertexshader.glsl" />
+    <None Include="res\shaders\terrainfragmentshader.glsl" />
   </ItemGroup>
 </Project>

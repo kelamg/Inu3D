@@ -143,7 +143,7 @@ string ShaderProgram::get_error_string(ShaderTypes type)
 
 void ShaderProgram::set_bool(int location, bool value) const
 {
-	GLCall(glUniform1i(location, (int)value));
+	GLCall(glUniform1f(location, value ? 1 : 0));
 }
 
 void ShaderProgram::set_int(int location, int value) const

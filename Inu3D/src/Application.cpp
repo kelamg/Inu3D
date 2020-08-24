@@ -5,6 +5,7 @@
 #include "entities/Entity.h"
 #include "terrains/Terrain.h"
 #include "mesh/OBJLoader.h"
+#include "utils/random/Random.h"
 
 int main(void)
 {
@@ -14,21 +15,34 @@ int main(void)
 	Loader loader;
 	MasterRenderer renderer;
 
-	string dragon = "dragon/dragon.obj";
-	string stall = "stall/stall.obj";
+	string dragon_model = "dragon/dragon.obj";
+	string stall_model = "stall/stall.obj";
+	string grass_model = "grass/grassModel.obj";
 	string dragon_texture = "snow-layer.png";
 	string stall_texture = "stall_tex.png";
-	RawModel *model = OBJLoader::load_obj_model(dragon, &loader);
-	TexturedModel *textured_model = new TexturedModel(model, new ModelTexture(loader.load_texture(dragon_texture)));
-	ModelTexture *texture = textured_model->get_texture();
-	texture->set_shine_damper(10);
-	texture->set_reflectivity(1);
+	string grass_texture = "grassTexture.png";
 
-	Entity *entity = new Entity(textured_model, glm::vec3(0, 0, -30), 0.0, 0.0, 0.0, 1.0);
+	TexturedModel *dragon = new TexturedModel(
+		OBJLoader::load_obj_model(dragon_model, &loader), new ModelTexture(loader.load_texture(dragon_texture)));
+	dragon->get_texture()->set_shine_damper(10);
+	dragon->get_texture()->set_reflectivity(1);
+
+	TexturedModel *grass = new TexturedModel(
+		OBJLoader::load_obj_model(grass_model, &loader), new ModelTexture(loader.load_texture(grass_texture)));
+	grass->get_texture()->set_has_transparency(true);
+	grass->get_texture()->set_use_fake_lighting(true);
+
+	Entity *entity = new Entity(dragon, glm::vec3(0, 0, -30), 0.0, 0.0, 0.0, 1.0);
 	Light* light = new Light(glm::vec3(3000, 2000, 2000), glm::vec3(1, 1, 1));
 
 	Terrain *terrain = new Terrain(0, -1, &loader, new ModelTexture(loader.load_texture("grass.png")));
 	Terrain *terrain2 = new Terrain(-1, -1, &loader, new ModelTexture(loader.load_texture("grass.png")));
+
+	vector<Entity*> entities;
+	for (int i = 0; i < 500; i++)
+	{
+		entities.push_back(new Entity(grass, glm::vec3(Random::Rand() * 800 - 400, 0, Random::Rand() * -600), 0, 0, 0, 1));
+	}
 
 	//	performance
 	double previous_time = glfwGetTime();
@@ -51,6 +65,10 @@ int main(void)
 		renderer.process_terrain(terrain);
 		renderer.process_terrain(terrain2);
 		renderer.process_entity(entity);
+		for (auto entity : entities)
+		{
+			renderer.process_entity(entity);
+		}
 		renderer.render(light, window.get_camera());
 		window.update();
 	}

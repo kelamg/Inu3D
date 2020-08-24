@@ -15,6 +15,7 @@ private:
 	int m_light_colour;
 	int m_shine_damper;
 	int m_reflectivity;
+	int m_use_fake_lighting;
 
 public:
 	StaticShader();
@@ -27,6 +28,7 @@ public:
 	void load_view_matrix(Camera *camera);
 	void load_light(Light *light);
 	void load_shine_vars(float damper, float reflectivity);
+	void load_fake_lighting_var(bool use_fake_lighting);
 
 };
 

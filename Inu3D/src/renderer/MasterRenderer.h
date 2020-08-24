@@ -39,5 +39,8 @@ public:
 	void render(Light *light, Camera *camera);
 	void process_entity(Entity *entity);
 	void process_terrain(Terrain *terrain);
+
+	static void enable_culling();
+	static void disable_culling();
 };
 

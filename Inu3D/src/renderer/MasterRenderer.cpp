@@ -3,10 +3,7 @@
 
 MasterRenderer::MasterRenderer()
 {
-	//	back-face culling
-	GLCall(glEnable(GL_CULL_FACE));
-	GLCall(glCullFace(GL_BACK));
-
+	enable_culling();
 	create_projection_matrix();
 	m_shader = new StaticShader();
 	m_renderer = new EntityRenderer(m_shader, m_projection_matrix);
@@ -71,6 +68,18 @@ void MasterRenderer::process_entity(Entity* entity)
 void MasterRenderer::process_terrain(Terrain *terrain)
 {
 	m_terrains->push_back(terrain);
+}
+
+void MasterRenderer::enable_culling()
+{
+	//	back-face culling
+	GLCall(glEnable(GL_CULL_FACE));
+	GLCall(glCullFace(GL_BACK));
+}
+
+void MasterRenderer::disable_culling()
+{
+	GLCall(glDisable(GL_CULL_FACE));
 }
 
 
