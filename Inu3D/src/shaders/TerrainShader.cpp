@@ -33,6 +33,7 @@ void TerrainShader::get_all_uniform_locations()
 	m_light_colour = get_uniform_location("light_colour");
 	m_shine_damper = get_uniform_location("shine_damper");
 	m_reflectivity = get_uniform_location("reflectivity");
+	m_sky_colour = get_uniform_location("sky_colour");
 }
 
 void TerrainShader::load_transformation_matrix(const glm::mat4 &matrix)
@@ -61,4 +62,9 @@ void TerrainShader::load_shine_vars(float damper, float reflectivity)
 {
 	set_float(m_shine_damper, damper);
 	set_float(m_reflectivity, reflectivity);
+}
+
+void TerrainShader::load_sky_colour(float r, float g, float b)
+{
+	set_vec3(m_sky_colour, r, g, b);
 }

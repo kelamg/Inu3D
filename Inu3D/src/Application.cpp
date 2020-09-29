@@ -61,7 +61,6 @@ int main(void)
 		}
 
 		entity->increase_rotation(0, 1, 0);
-		window.clear(0.1f, 0.2f, 0.3f);
 		renderer.process_terrain(terrain);
 		renderer.process_terrain(terrain2);
 		renderer.process_entity(entity);

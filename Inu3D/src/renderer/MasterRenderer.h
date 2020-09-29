@@ -17,6 +17,9 @@ private:
 	static constexpr float FOV = 70;
 	static constexpr float NEAR_PLANE = 0.1f;
 	static constexpr float FAR_PLANE = 1000;
+	static constexpr float RED = 0.5f;
+	static constexpr float GREEN = 0.5f;
+	static constexpr float BLUE = 0.5f;
 
 	glm::mat4 m_projection_matrix;
 	StaticShader *m_shader;
@@ -35,6 +38,7 @@ public:
 	MasterRenderer();
 	~MasterRenderer();
 
+	void prepare();
 	void clean_up();
 	void render(Light *light, Camera *camera);
 	void process_entity(Entity *entity);

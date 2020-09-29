@@ -22,6 +22,14 @@ MasterRenderer::~MasterRenderer()
 	delete m_terrain_shader;
 }
 
+void MasterRenderer::prepare()
+{
+	GLCall(glEnable(GL_DEPTH_TEST));
+	GLCall(glClearColor(RED, GREEN, BLUE, 1.0f));
+	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+}
+
+
 void MasterRenderer::clean_up()
 {
 	m_shader->clean_up();
@@ -30,13 +38,16 @@ void MasterRenderer::clean_up()
 
 void MasterRenderer::render(Light *light, Camera *camera)
 {
+	prepare();
 	m_shader->start();
+	m_shader->load_sky_colour(RED, GREEN, BLUE);
 	m_shader->load_light(light);
 	m_shader->load_view_matrix(camera);
 	m_renderer->render(m_entities_map);
 	m_shader->stop();
 
 	m_terrain_shader->start();
+	m_terrain_shader->load_sky_colour(RED, GREEN, BLUE);
 	m_terrain_shader->load_light(light);
 	m_terrain_shader->load_view_matrix(camera);
 	m_terrain_renderer->render(m_terrains);
